@@ -37,8 +37,11 @@ public class Tekst extends Innlegg {
 	
 	// Metoden nedenfor er kun for valgfri oppgave 6
 	public String toHTML() {
-			
-		throw new UnsupportedOperationException(TODO.method());
+
+        String header = "<h2>" + getBruker() + "@" + getDato() + " [" + getLikes() + "]</h2>\n";
+        String body = "<p>" + tekst + "</p>\n";
+        String hr = "<hr>\n";
+        return header + body + hr;
 				
 	}
 }

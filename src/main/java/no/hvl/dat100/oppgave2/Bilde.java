@@ -31,8 +31,14 @@ public class Bilde extends Tekst {
 
 	// Metoden nedenfor er kun for valgfri oppgave 6
 	public String toHTML() {
-		
-		throw new UnsupportedOperationException(TODO.method());
+        // Eksempel i oppgaven viser et iframe for bilde:
+        String header = "<h2>" + getBruker() + "@" + getDato() + " [" + getLikes() + "]</h2>\n";
+        String body = "<p>" + getTekst() + "</p>\n";
+        // bruker iframe som i eksemplet (høyde/bredde satt - kan tilpasses)
+        String media = "<iframe src=\"" + url + "\" height=600 width=800></iframe>\n";
+        String hr = "<hr>\n";
+        return header + body + media + hr;
+
 				
 	}
 }

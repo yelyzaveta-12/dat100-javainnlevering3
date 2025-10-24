@@ -24,16 +24,18 @@ public class Blogg {
 
 	}
 
+    //c
 	public int getAntall() {
         return nesteledig;
 	}
-	
+
+    //d
 	public Innlegg[] getSamling() {
         return innleggtabell;
 	}
-	
-	public int finnInnlegg(Innlegg innlegg) {
 
+    //e
+	public int finnInnlegg(Innlegg innlegg) {
 
         //som returnerer indeks (posisjon) i tabellen for et innlegg i samlingen med samme id
         // som parameteren innlegg (om en slik finnes) og -1 ellers.
@@ -42,33 +44,44 @@ public class Blogg {
         if(innlegg == null) return -1;
 
         for(int i=0; i<nesteledig; i++) {
-            if(innleggtabell[i].erLik(innlegg)){
+            if(innleggtabell[i].erLik(innlegg)){ //oppgave1 erLik
                 return i;
             }
         }
         return -1;
 	}
 
+    //f
 	public boolean finnes(Innlegg innlegg) {
-
-
-
+        return finnInnlegg(innlegg) != -1;
 	}
 
+    //g
 	public boolean ledigPlass() {
-		throw new UnsupportedOperationException(TODO.method());
-
+		return nesteledig < innleggtabell.length;
 	}
-	
+
+    //h
 	public boolean leggTil(Innlegg innlegg) {
 
-		throw new UnsupportedOperationException(TODO.method());
+        if(innlegg == null) return false;
+        if(finnes(innlegg)) return false;
+        if(!ledigPlass()) return false;
+
+        innleggtabell[nesteledig] = innlegg;
+        nesteledig++;
+        return true;
 	}
-	
+
+    //i
+    @Override
 	public String toString() {
-
-
-
+        StringBuilder sb = new StringBuilder();
+        sb.append(nesteledig).append("\n");
+        for(int i=0; i<nesteledig; i++) {
+            sb.append(innleggtabell[i].toString());
+        }
+        return sb.toString();
 	}
 
 	// valgfrie oppgaver nedenfor

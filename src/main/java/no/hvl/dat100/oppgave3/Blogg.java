@@ -85,24 +85,35 @@ public class Blogg {
 	}
 
 	// valgfrie oppgaver nedenfor
-	
+
+
+    //j som oppretter en ny tabell av innlegg-objekt
+    // som er dobbelt så stor og flytter elementene over i denne.
 	public void utvid() {
-
-
-
+        Innlegg[] ny = new Innlegg[innleggtabell.length * 2];
+        for(int i=0; i<nesteledig; i++) {
+            ny[i] = innleggtabell[i];
+        }
+        innleggtabell = ny;
 	}
-	
+
+    //k
 	public boolean leggTilUtvid(Innlegg innlegg) {
-
-
-		
+        if (innlegg == null) return false;
+        if (finnes(innlegg)) return false;
+        if(!ledigPlass()) {
+            utvid();
+        }
+		return leggTil(innlegg);
 	}
-	
+
+    //l
 	public boolean slett(Innlegg innlegg) {
 		
 
 	}
-	
+
+    //m
 	public int[] search(String keyword) {
 		
 

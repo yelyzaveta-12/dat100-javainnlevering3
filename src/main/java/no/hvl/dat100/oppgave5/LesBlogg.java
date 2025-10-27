@@ -22,7 +22,14 @@ public class LesBlogg {
 
 	public static Blogg les(String mappe, String filnavn) {
 
-		throw new UnsupportedOperationException(TODO.method());
+		File file = new file((mappe == null || mappe.isEmpty())) ? "." : mappe, filnavn);
+        if (!file.exists()) {
+            System.out.println("Filen finnes ikke: " + file.getAbsolutePath());
+            return null;
+        }
+        try {}
 
-	}
-}
+
+
+
+    }

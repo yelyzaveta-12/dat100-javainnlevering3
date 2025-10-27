@@ -29,11 +29,7 @@ public class SkrivBlogg {
         } catch (IOException e) {
             System.out.println("Feil: " + e.getMessage());
             return false;
-        } finally {
-            if (pw != null) {
-                pw.close();
-            }
+        }
         }
 
 	}
-}

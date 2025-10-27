@@ -109,8 +109,16 @@ public class Blogg {
 
     //l
 	public boolean slett(Innlegg innlegg) {
-		
 
+		int index = finnInnlegg(innlegg);
+        if (index == -1) return false;
+
+        for(int i = index, i < nesteledig -1; i++){
+            innleggtabell[i] = innleggtabell[i + 1];
+        }
+        innleggtabell[nesteledig -1] = null;
+        nesteledig--;
+        return true;
 	}
 
     //m

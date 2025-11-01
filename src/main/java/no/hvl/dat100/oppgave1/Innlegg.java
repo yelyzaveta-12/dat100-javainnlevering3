@@ -68,7 +68,7 @@ public abstract class Innlegg {
 	}
 
 	//d metod som øker antall likes for innlegget med 1.
-	public void doLike (int likes) {
+	public void doLike () {
             likes++;
 	}
 

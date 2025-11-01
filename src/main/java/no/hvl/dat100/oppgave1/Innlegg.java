@@ -1,21 +1,12 @@
 package no.hvl.dat100.oppgave1;
 
-import no.hvl.dat100.common.TODO;
-
 public abstract class Innlegg {
-	
-	//deklarering av objektvariable
-    private int id;
 
+    private int id;
     private String bruker;
     private String dato;
     private int likes;
-	
-	public Innlegg() {
-		
-	}
 
-    //b
 	public Innlegg(int id, String bruker, String dato) {
 
         this.id = id;
@@ -26,7 +17,7 @@ public abstract class Innlegg {
 
 	public Innlegg(int id, String bruker, String dato, int likes) {
 
-		this .id = id;
+		this.id = id;
         this.bruker = bruker;
         this.dato = dato;
         this.likes = likes;
@@ -34,15 +25,11 @@ public abstract class Innlegg {
 	}
 	
 	public String getBruker() {
-
         return bruker;
-
-
 	}
 
 	public void setBruker(String bruker) {
         this.bruker = bruker;
-		throw new UnsupportedOperationException(TODO.method());
 	}
 
 	public String getDato() {
@@ -57,36 +44,32 @@ public abstract class Innlegg {
 
 	public int getId() {
         return id;
-
-
 	}
+
+    public void setId(int id){
+        this.id = id;
+    }
 
 	public int getLikes() {
         return likes;
-
-
 	}
 
-	//d metod som øker antall likes for innlegget med 1.
 	public void doLike () {
             likes++;
 	}
 
-    //f
 	public boolean erLik(Innlegg innlegg) {
-        return this.id==innlegg.getId();
-		// method som returner true hvis innlegget gar samme id
-        // som innleget inlegg git med som parameter (meaning - innlegg,getId() method call, Liz)
-
+        return this.id == innlegg.getId();
 	}
 
-    //e
 	@Override
 	public String toString() {
-        return "1\nOle Olsen\n23-10\n7\n";
+        return id + "\n" + bruker + "\n" + dato + "\n" + likes + "\n";
 	}
 	
 	// Metoden nedenfor er kun for valgfri oppgave 6
-	public abstract String toHTML();
+	public String toHTML() {
+        return "\t\t<h2>" + bruker + "@" + dato + " (" + likes + ")</h2>\n";
+    }
 
 }

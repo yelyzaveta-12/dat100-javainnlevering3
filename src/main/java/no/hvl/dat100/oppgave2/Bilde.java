@@ -1,7 +1,5 @@
 package no.hvl.dat100.oppgave2;
 
-import no.hvl.dat100.common.TODO;
-
 public class Bilde extends Tekst {
 
 	private String url;
@@ -21,12 +19,18 @@ public class Bilde extends Tekst {
 	}
 
 	public void setUrl(String url) {
-		this.url = url;
+        this.url = url;
 	}
 
 	@Override
 	public String toString() {
-        return "BILDE\n" + super.toString() + url + "\n";
+        return "BILDE\n"
+                + getId() + "\n"
+                + getBruker() + "\n"
+                + getDato() + "\n"
+                + getLikes() + "\n"
+                + getTekst() + "\n"
+                + url + "\n";
 	}
 
 	// Metoden nedenfor er kun for valgfri oppgave 6

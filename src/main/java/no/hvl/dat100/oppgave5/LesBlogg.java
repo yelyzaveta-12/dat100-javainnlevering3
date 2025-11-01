@@ -2,29 +2,21 @@ package no.hvl.dat100.oppgave5;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Scanner;
 
-import no.hvl.dat100.common.TODO;
-import no.hvl.dat100.oppgave1.*;
-import no.hvl.dat100.oppgave2.*;
-import no.hvl.dat100.oppgave3.*;
-
-import javax.swing.JOptionPane;
+import no.hvl.dat100.oppgave2.Bilde;
+import no.hvl.dat100.oppgave2.Tekst;
+import no.hvl.dat100.oppgave3.Blogg;
 
 public class LesBlogg {
 
-	private static String TEKST = "TEKST";
-	private static String BILDE = "BILDE";
+    private static String TEKST = "TEKST";
+    private static String BILDE = "BILDE";
 
-	public static Blogg les(String mappe, String filnavn) {
-
+    public static Blogg les(String mappe, String filnavn) {
         File file = new File((mappe == null || mappe.isEmpty()) ? "." : mappe, filnavn);
         if (!file.exists()) {
-            System.out.println("Filen finnes ikke: " + file.getAbsolutePath());
             return null;
         }
 
@@ -33,46 +25,38 @@ public class LesBlogg {
             if (line == null) return null;
 
             int antall = Integer.parseInt(line.trim());
-            Blogg blogg = new Blogg(antall > 0 ? antall : 20);
+            if (antall < 0) return null;
+
+            Blogg blogg = new Blogg(antall);
 
             for (int i = 0; i < antall; i++) {
                 String type = br.readLine();
-                if (type == null) break;
+                if (type == null) return null;
                 type = type.trim();
 
-                
-                String idLine = br.readLine();
-                String bruker = br.readLine();
-                String dato = br.readLine();
-                String likesLine = br.readLine();
+                String idLine = br.readLine(); if (idLine == null) return null;
+                String bruker = br.readLine(); if (bruker == null) return null;
+                String dato = br.readLine();   if (dato == null) return null;
+                String likesLine = br.readLine(); if (likesLine == null) return null;
 
                 int id = Integer.parseInt(idLine.trim());
                 int likes = Integer.parseInt(likesLine.trim());
 
-                if ("TEKST".equalsIgnoreCase(type)) {
-                    String tekst = br.readLine();
-                    Tekst t = new Tekst(id, bruker, dato, likes, tekst);
-                    blogg.leggTil(t);
-
-                } else if ("BILDE".equalsIgnoreCase(type)) {
-                    String tekst = br.readLine();
-                    String url = br.readLine();
-                    Bilde b = new Bilde(id, bruker, dato, likes, tekst, url);
-                    blogg.leggTil(b);
-
+                if (TEKST.equals(type)) {
+                    String tekst = br.readLine(); if (tekst == null) return null;
+                    blogg.leggTil(new Tekst(id, bruker, dato, likes, tekst));
+                } else if (BILDE.equals(type)) {
+                    String tekst = br.readLine(); if (tekst == null) return null;
+                    String url = br.readLine();   if (url == null) return null;
+                    blogg.leggTil(new Bilde(id, bruker, dato, likes, tekst, url));
                 } else {
-                    System.out.println("Ukjent innleggstype: " + type);
+                    return null;
                 }
             }
             return blogg;
 
-        } catch (IOException e) {
-            System.out.println("IO-feil ved lesing: " + e.getMessage());
-            return null;
-        } catch (NumberFormatException nfe) {
-            System.out.println("Feil tallformat i fil: " + nfe.getMessage());
+        } catch (IOException | NumberFormatException e) {
             return null;
         }
     }
 }
-

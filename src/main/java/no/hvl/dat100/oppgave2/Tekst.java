@@ -1,13 +1,10 @@
 package no.hvl.dat100.oppgave2;
-
-import no.hvl.dat100.common.TODO;
 import no.hvl.dat100.oppgave1.*;
 
 public class Tekst extends Innlegg {
 
 	private String tekst;
 
-	
 	public Tekst(int id, String bruker, String dato, String tekst) {
         super(id, bruker, dato);
         this.tekst = tekst;
@@ -31,8 +28,12 @@ public class Tekst extends Innlegg {
 
 	@Override
 	public String toString() {
-        return "TEKST\n1" + super.toString() + tekst + "\n";
-
+        return "TEKST\n"
+                + getId() + "\n"
+                + getBruker() + "\n"
+                + getDato() + "\n"
+                + getLikes() + "\n"
+                + tekst + "\n";
 	}
 	
 	// Metoden nedenfor er kun for valgfri oppgave 6
